@@ -7,15 +7,42 @@ export default class CartsController {
     return carts
   }
 
-  public async create({}: HttpContextContract) {}
+  public async create({ request }: HttpContextContract) {
+    const data = request.only([
+      'nome_do_cliente',
+      'numero_do_pedido',
+      'email',
+      'status',
+      'products',
+    ])
 
-  public async store({}: HttpContextContract) {}
+    const newCart = await Cart.create(data)
+    await newCart.related('products').createMany(data.products)
+    return newCart
+  }
 
-  public async show({}: HttpContextContract) {}
+  public async show({ params }: HttpContextContract) {
+    const cart = await Cart.query().preload('products').where('id', params.id).firstOrFail()
+    return cart
+  }
 
-  public async edit({}: HttpContextContract) {}
+  public async update({ request, params }: HttpContextContract) {
+    const cart = await Cart.findOrFail(params.id)
+    const data = request.only([
+      'nome_do_cliente',
+      'numero_do_pedido',
+      'email',
+      'status',
+      'products',
+    ])
 
-  public async update({}: HttpContextContract) {}
+    cart.merge(data)
+    await cart.save()
+    return cart
+  }
 
-  public async destroy({}: HttpContextContract) {}
+  public async destroy({ params }: HttpContextContract) {
+    const cart = await Cart.findOrFail(params.id)
+    await cart.delete()
+  }
 }
