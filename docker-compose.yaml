@@ -1,0 +1,17 @@
+version: '3.9'
+
+services:
+  database:
+    image: mysql
+    platform: linux/x86_64
+    container_name: ${DATABASE_CONTAINER_NAME}
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DB_NAME}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    ports:
+      - '${MYSQL_PORT}:3306'
