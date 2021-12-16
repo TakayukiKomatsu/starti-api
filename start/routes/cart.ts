@@ -24,6 +24,6 @@ Route.group(() => {
   Route.get('/', 'CartsController.index')
   Route.post('/', 'CartsController.create')
   Route.get('/:id', 'CartsController.show')
-  Route.put('/:id', 'CartsController.update')
+  Route.put('/:id', 'CartsController.update').middleware('notAllowed')
   Route.delete('/:id', 'CartsController.destroy')
 }).prefix('/carts')
