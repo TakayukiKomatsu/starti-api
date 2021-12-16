@@ -19,9 +19,14 @@ export default class ProductsController {
     return product
   }
 
-  public async edit({}: HttpContextContract) {}
+  public async update({ request, params }: HttpContextContract) {
+    const data = request.only(['nome', 'valor_unitario', 'quantidade'])
+    const product = await Product.findOrFail(params.id)
 
-  public async update({}: HttpContextContract) {}
+    product.merge(data)
+    await product.save()
+    return product
+  }
 
   public async destroy({}: HttpContextContract) {}
 }
