@@ -15,7 +15,7 @@ export default class Cart extends BaseModel {
   public email: string
 
   @column()
-  public status: 'Em Aberto' | 'Pago' | ' Cancelado'
+  public status: 'Em Aberto' | 'Pago' | 'Cancelado'
 
   @hasMany(() => Product, {
     foreignKey: 'cart_id',
