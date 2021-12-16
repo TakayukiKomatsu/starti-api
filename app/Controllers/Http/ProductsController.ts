@@ -28,5 +28,8 @@ export default class ProductsController {
     return product
   }
 
-  public async destroy({}: HttpContextContract) {}
+  public async destroy({ params }: HttpContextContract) {
+    const product = await Product.findOrFail(params.id)
+    await product.delete()
+  }
 }
