@@ -14,9 +14,10 @@ export default class ProductsController {
     return newProduct
   }
 
-  public async store({}: HttpContextContract) {}
-
-  public async show({}: HttpContextContract) {}
+  public async show({ params }: HttpContextContract) {
+    const product = await Product.findOrFail(params.id)
+    return product
+  }
 
   public async edit({}: HttpContextContract) {}
 
