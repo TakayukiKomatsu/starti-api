@@ -7,7 +7,12 @@ export default class ProductsController {
     return products
   }
 
-  public async create({}: HttpContextContract) {}
+  public async create({ request }: HttpContextContract) {
+    const data = request.only(['nome', 'valor_unitario', 'quantidade'])
+
+    const newProduct = await Product.create(data)
+    return newProduct
+  }
 
   public async store({}: HttpContextContract) {}
 
