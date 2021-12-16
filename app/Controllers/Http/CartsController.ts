@@ -1,5 +1,6 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Cart from 'App/Models/Cart'
+import CartValidator from 'App/Validators/CartValidator'
 
 export default class CartsController {
   public async index({}: HttpContextContract) {
@@ -8,13 +9,7 @@ export default class CartsController {
   }
 
   public async create({ request }: HttpContextContract) {
-    const data = request.only([
-      'nome_do_cliente',
-      'numero_do_pedido',
-      'email',
-      'status',
-      'products',
-    ])
+    const data = await request.validate(CartValidator)
 
     const newCart = await Cart.create(data)
     await newCart.related('products').createMany(data.products)
@@ -28,13 +23,7 @@ export default class CartsController {
 
   public async update({ request, params }: HttpContextContract) {
     const cart = await Cart.findOrFail(params.id)
-    const data = request.only([
-      'nome_do_cliente',
-      'numero_do_pedido',
-      'email',
-      'status',
-      'products',
-    ])
+    const data = await request.validate(CartValidator)
 
     cart.merge(data)
     await cart.save()
