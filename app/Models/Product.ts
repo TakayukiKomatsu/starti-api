@@ -13,4 +13,7 @@ export default class Product extends BaseModel {
 
   @column()
   public quantidade: number
+
+  @column()
+  public cart_id: number
 }
