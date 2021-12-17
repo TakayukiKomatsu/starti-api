@@ -33,6 +33,16 @@ Para instalar o Starti-API, siga estas etapas:
     git clone https://github.com/TakayukiKomatsu/starti-api
 ```
 
+## ❗Observações
+
+Após adicionar seu banco de dados, será necessário rodar um
+
+```cmd
+    node ace migration:run
+```
+
+Pois inicialmente,não haverá tabelas no seu banco de dados
+
 ## ☕ Usando Starti-API
 
 Para usar Starti-API>, siga estas etapas:
