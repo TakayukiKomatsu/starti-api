@@ -24,15 +24,15 @@ export default class CartValidator {
    *    ```
    */
   public schema = schema.create({
-    nome_do_cliente: schema.string({ trim: true }),
-    numero_do_pedido: schema.number(),
+    name: schema.string({ trim: true }),
+    order_number: schema.number(),
     email: schema.string({}, [rules.email()]),
     status: schema.enum(['Em Aberto', 'Pago', 'Cancelado'] as const),
     products: schema.array().members(
       schema.object().members({
-        nome: schema.string({ trim: true }),
-        valor_unitario: schema.number([rules.unsigned()]),
-        quantidade: schema.number(),
+        name: schema.string({ trim: true }),
+        unit_price: schema.number([rules.unsigned()]),
+        amount: schema.number(),
       })
     ),
   })

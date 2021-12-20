@@ -24,9 +24,9 @@ export default class ProductValidator {
    *    ```
    */
   public schema = schema.create({
-    nome: schema.string({ trim: true }),
-    valor_unitario: schema.number([rules.unsigned()]),
-    quantidade: schema.number(),
+    name: schema.string({ trim: true }),
+    unit_price: schema.number([rules.unsigned()]),
+    amount: schema.number(),
   })
 
   /**
