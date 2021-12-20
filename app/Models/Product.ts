@@ -6,13 +6,13 @@ export default class Product extends BaseModel {
   public id: number
 
   @column()
-  public nome: string
+  public name: string
 
   @column()
-  public valor_unitario: number
+  public unit_price: number
 
   @column()
-  public quantidade: number
+  public amount: number
 
   @column()
   public cart_id: number

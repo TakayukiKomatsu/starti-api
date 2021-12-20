@@ -6,10 +6,10 @@ export default class Cart extends BaseModel {
   public id: number
 
   @column()
-  public nome_do_cliente: string
+  public name: string
 
   @column()
-  public numero_do_pedido: number
+  public order_number: number
 
   @column()
   public email: string

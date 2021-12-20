@@ -9,9 +9,9 @@ export default class Products extends BaseSchema {
   public async up() {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id')
-      table.string('nome').notNullable()
-      table.float('valor_unitario', 15, 2).notNullable().unsigned()
-      table.float('quantidade').notNullable()
+      table.string('name').notNullable()
+      table.float('unit_price', 15, 2).notNullable().unsigned()
+      table.float('amount').notNullable()
     })
   }
 

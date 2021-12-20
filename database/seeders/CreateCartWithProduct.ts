@@ -4,37 +4,37 @@ import Cart from 'App/Models/Cart'
 export default class CreateCartWithProductSeeder extends BaseSeeder {
   public async run() {
     const cart = await Cart.create({
-      nome_do_cliente: 'Normy Hallwell',
-      numero_do_pedido: 5516,
+      name: 'Normy Hallwell',
+      order_number: 5516,
       email: 'nhallwell0@un.org',
       status: 'Cancelado',
     })
 
     await cart.related('products').createMany([
       {
-        nome: 'Hickory Smoke, Liquid',
-        valor_unitario: 22.8,
-        quantidade: 53,
+        name: 'Hickory Smoke, Liquid',
+        unit_price: 22.8,
+        amount: 53,
       },
       {
-        nome: 'Tomatoes - Yellow Hot House',
-        valor_unitario: 17.31,
-        quantidade: 17,
+        name: 'Tomatoes - Yellow Hot House',
+        unit_price: 17.31,
+        amount: 17,
       },
       {
-        nome: 'Tomatoes - Vine Ripe, Red',
-        valor_unitario: 71.85,
-        quantidade: 66,
+        name: 'Tomatoes - Vine Ripe, Red',
+        unit_price: 71.85,
+        amount: 66,
       },
       {
-        nome: 'Table Cloth 81x81 White',
-        valor_unitario: 64.02,
-        quantidade: 90,
+        name: 'Table Cloth 81x81 White',
+        unit_price: 64.02,
+        amount: 90,
       },
       {
-        nome: 'Potatoes - Mini White 3 Oz',
-        valor_unitario: 48.49,
-        quantidade: 34,
+        name: 'Potatoes - Mini White 3 Oz',
+        unit_price: 48.49,
+        amount: 34,
       },
     ])
   }
