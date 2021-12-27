@@ -15,3 +15,26 @@ services:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
     ports:
       - '${MYSQL_PORT}:3306'
+
+  api:
+    container_name: ${API_CONTAINER_NAME}
+    build: .
+    restart: always
+    depends_on:
+      - ${DATABASE_CONTAINER_NAME}
+    environment:
+      PORT: ${PORT}
+      HOST: ${HOST}
+      NODE_ENV: ${NODE_ENV}
+      APP_KEY: ${APP_KEY}
+      DRIVE_DISK: local
+
+      DB_CONNECTION: ${DB_CONNECTION}
+      MYSQL_HOST: ${DATABASE_CONTAINER_NAME}
+      MYSQL_PORT: ${MYSQL_PORT}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DB_NAME: ${MYSQL_DB_NAME}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    ports:
+      - '${PORT}:3333'
